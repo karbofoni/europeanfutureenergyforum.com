@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config:*)",
+      "Bash(netlify status:*)",
+      "Bash(dir:*)",
+      "Bash(test:*)",
+      "Bash(gh auth status:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: European Future Energy Forum platform\n\nComplete Next.js application with:\n- 19 pages including projects, investors, suppliers, policy, and more\n- AI-powered features (Policy Copilot, Smart Matchmaker, Grid Estimator)\n- Supabase database integration\n- Full responsive design with Tailwind CSS and shadcn/ui\n- SEO optimization and accessibility compliance\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
