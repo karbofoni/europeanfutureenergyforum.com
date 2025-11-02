@@ -7,6 +7,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import { KeyboardShortcuts } from '@/components/keyboard-shortcuts';
 import { Toaster } from '@/components/ui/sonner';
 import { BackToTop } from '@/components/back-to-top';
+import { OrganizationSchema, WebSiteSchema } from '@/components/structured-data';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -89,6 +90,8 @@ export default function RootLayout({
         <Toaster />
         <BackToTop />
         <KeyboardShortcuts />
+        <OrganizationSchema />
+        <WebSiteSchema />
       </body>
     </html>
   );

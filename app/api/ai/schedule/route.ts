@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SchedulerRequest, SchedulerResponse } from '@/types/ai';
+import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
+  // Rate limiting: 10 requests per minute per IP
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = checkRateLimit(clientId, 10);
+
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: rateLimitResult.headers,
+      }
+    );
+  }
+
   try {
     const body: SchedulerRequest = await request.json();
 

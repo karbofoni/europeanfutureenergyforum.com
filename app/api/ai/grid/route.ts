@@ -3,8 +3,23 @@ import { GridEstimatorRequest, GridEstimatorResponse } from '@/types/ai';
 import { chatCompletion } from '@/lib/openai';
 import { supabase } from '@/lib/supabase';
 import { logAIUsage, estimateTokenCount } from '@/lib/ai-analytics';
+import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
+  // Rate limiting: 10 requests per minute per IP
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = checkRateLimit(clientId, 10);
+
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: rateLimitResult.headers,
+      }
+    );
+  }
+
   const startTime = Date.now();
   let inputTokens = 0;
   let outputTokens = 0;
