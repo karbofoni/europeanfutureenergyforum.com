@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { OrganizationSchema } from '@/components/json-ld';
+import { getShimmerDataURL } from '@/lib/image-blur';
 import {
   ArrowRight,
   Zap,
@@ -23,10 +25,16 @@ export default function HomePage() {
       <div className="flex flex-col">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="Wind turbines and solar panels"
-            className="w-full h-full object-cover opacity-20"
+            fill
+            className="object-cover opacity-20"
+            priority
+            sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={getShimmerDataURL()}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white" />
         </div>

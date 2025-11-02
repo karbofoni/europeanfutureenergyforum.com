@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import { getShimmerDataURL } from '@/lib/image-blur';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Users, Shield, Database } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -12,10 +14,15 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <div className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 border-b">
         <div className="absolute inset-0 overflow-hidden">
-          <img
+          <Image
             src="https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="Team collaboration"
-            className="w-full h-full object-cover opacity-10"
+            fill
+            className="object-cover opacity-10"
+            sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={getShimmerDataURL()}
           />
         </div>
         <div className="container relative z-10 py-12">

@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
 import { Investor } from '@/types/database';
 import { InvestorsList } from '@/components/investors-list';
+import { getShimmerDataURL } from '@/lib/image-blur';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -32,10 +34,15 @@ export default async function InvestorsPage() {
     <div className="min-h-screen">
       <div className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 border-b">
         <div className="absolute inset-0 overflow-hidden">
-          <img
+          <Image
             src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="Business collaboration"
-            className="w-full h-full object-cover opacity-10"
+            fill
+            className="object-cover opacity-10"
+            sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={getShimmerDataURL()}
           />
         </div>
         <div className="container relative z-10 py-12">
