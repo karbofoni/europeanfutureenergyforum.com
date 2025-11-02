@@ -1,3 +1,5 @@
+'use client';
+
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBlogPost, getBlogPosts } from '@/lib/blog-posts';
@@ -5,28 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-
-export async function generateStaticParams() {
-  const posts = getBlogPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    };
-  }
-
-  return {
-    title: `${post.title} - Transition Nexus Europe`,
-    description: post.excerpt,
-  };
-}
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug);
