@@ -1,20 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ProjectForm } from '@/components/health-check/project-form';
 import { ResultsDisplay } from '@/components/health-check/results-display';
 import { getShimmerDataURL } from '@/lib/image-blur';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Shield, TrendingUp, Clock, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Shield, TrendingUp, Clock, Award, ArrowRight, CheckCircle2, Eye, Zap } from 'lucide-react';
 import type { ProjectHealthCheckInput, HealthCheckResult } from '@/types/health-check';
+import { DEMO_REPORT, EXAMPLE_PROJECT } from '@/lib/demo-data';
 
 export default function HealthCheckPage() {
   const [showForm, setShowForm] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('');
   const [result, setResult] = useState<HealthCheckResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [exampleData, setExampleData] = useState<ProjectHealthCheckInput | null>(null);
+
+  // Loading progress messages
+  useEffect(() => {
+    if (!isAnalyzing) return;
+
+    const messages = [
+      'Analyzing technical factors...',
+      'Evaluating financial structure...',
+      'Comparing with similar projects...',
+      'Assessing legal and regulatory compliance...',
+      'Identifying potential risks...',
+      'Calculating investor readiness...',
+      'Finalizing recommendations...',
+    ];
+
+    let messageIndex = 0;
+    setLoadingMessage(messages[0]);
+
+    const interval = setInterval(() => {
+      messageIndex = (messageIndex + 1) % messages.length;
+      setLoadingMessage(messages[messageIndex]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isAnalyzing]);
 
   const handleSubmit = async (data: ProjectHealthCheckInput) => {
     setIsAnalyzing(true);
@@ -44,6 +72,18 @@ export default function HealthCheckPage() {
 
   const handleStartNew = () => {
     setResult(null);
+    setShowForm(true);
+    setExampleData(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleViewDemo = () => {
+    setResult(DEMO_REPORT);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleTryExample = () => {
+    setExampleData(EXAMPLE_PROJECT);
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -111,10 +151,24 @@ export default function HealthCheckPage() {
             </div>
           )}
 
-          <ProjectForm onSubmit={handleSubmit} isLoading={isAnalyzing} />
+          {isAnalyzing && (
+            <div className="max-w-3xl mx-auto mb-6 p-6 bg-emerald-50 border border-emerald-200 rounded-lg text-center">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-emerald-600"></div>
+                <span className="text-lg font-semibold text-emerald-900">Analyzing Your Project</span>
+              </div>
+              <p className="text-emerald-700">{loadingMessage}</p>
+              <p className="text-xs text-emerald-600 mt-2">This typically takes 10-15 seconds</p>
+            </div>
+          )}
+
+          <ProjectForm onSubmit={handleSubmit} isLoading={isAnalyzing} exampleData={exampleData} />
 
           <div className="max-w-3xl mx-auto mt-8 text-center">
-            <Button variant="ghost" onClick={() => setShowForm(false)}>
+            <Button variant="ghost" onClick={() => {
+              setShowForm(false);
+              setExampleData(null);
+            }}>
               Back to Overview
             </Button>
           </div>
@@ -158,10 +212,28 @@ export default function HealthCheckPage() {
                 Start Free Analysis
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="#how-it-works">Learn How It Works</a>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={handleViewDemo}
+                className="text-lg px-8"
+              >
+                <Eye className="mr-2 h-5 w-5" />
+                View Demo Report
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={handleTryExample}
+                className="text-lg px-8"
+              >
+                <Zap className="mr-2 h-5 w-5" />
+                Try Example
               </Button>
             </div>
+            <p className="text-sm text-muted-foreground mt-4">
+              No signup required • Takes 3 minutes • 100% free
+            </p>
           </div>
         </div>
       </div>

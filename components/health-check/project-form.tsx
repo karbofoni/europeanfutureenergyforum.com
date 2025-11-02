@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,12 +12,20 @@ import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 interface ProjectFormProps {
   onSubmit: (data: ProjectHealthCheckInput) => void;
   isLoading?: boolean;
+  exampleData?: ProjectHealthCheckInput | null;
 }
 
-export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
+export function ProjectForm({ onSubmit, isLoading, exampleData }: ProjectFormProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<Partial<ProjectHealthCheckInput>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Auto-fill with example data when provided
+  useEffect(() => {
+    if (exampleData) {
+      setFormData(exampleData);
+    }
+  }, [exampleData]);
 
   const totalSteps = 4;
 
