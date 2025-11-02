@@ -1,14 +1,14 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ResultsDisplay } from '@/components/health-check/results-display';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Share2, Download } from 'lucide-react';
 import type { HealthCheckResult } from '@/types/health-check';
 
-export default function ReportPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
+export default function ReportPage({ params }: { params: { id: string } }) {
+  const resolvedParams = params;
   const router = useRouter();
   const [report, setReport] = useState<HealthCheckResult | null>(null);
   const [loading, setLoading] = useState(true);

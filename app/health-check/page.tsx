@@ -18,6 +18,26 @@ export default function HealthCheckPage() {
   const [result, setResult] = useState<HealthCheckResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [exampleData, setExampleData] = useState<ProjectHealthCheckInput | null>(null);
+  const [recentReports, setRecentReports] = useState<any[]>([]);
+  const [loadingReports, setLoadingReports] = useState(true);
+
+  // Fetch recent reports
+  useEffect(() => {
+    async function fetchRecentReports() {
+      try {
+        const response = await fetch('/api/health-check/reports');
+        if (response.ok) {
+          const data = await response.json();
+          setRecentReports(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch recent reports:', err);
+      } finally {
+        setLoadingReports(false);
+      }
+    }
+    fetchRecentReports();
+  }, []);
 
   // Loading progress messages
   useEffect(() => {
@@ -391,6 +411,49 @@ export default function HealthCheckPage() {
             No signup required • Takes 3 minutes • 100% free
           </p>
         </div>
+
+        {/* Recent Reports */}
+        {!loadingReports && recentReports.length > 0 && (
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold mb-6 text-center">Recent Health Check Reports</h2>
+            <div className="grid gap-4">
+              {recentReports.map((report) => (
+                <Card
+                  key={report.report_id}
+                  className="cursor-pointer hover:border-emerald-500 transition-colors"
+                  onClick={() => window.location.href = `/health-check/report/${report.report_id}`}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                            report.score_category === 'Excellent' ? 'bg-green-100 text-green-800' :
+                            report.score_category === 'Good' ? 'bg-blue-100 text-blue-800' :
+                            report.score_category === 'Needs Work' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {report.overall_score}/100 - {report.score_category}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {new Date(report.created_at).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <p className="font-semibold text-lg">
+                          {report.project_data?.technology} • {report.project_data?.capacity_mw} MW • {report.project_data?.country}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Report ID: {report.report_id}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Disclaimer */}
         <div className="max-w-4xl mx-auto mt-12 p-6 bg-slate-50 rounded-lg border">
