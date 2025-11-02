@@ -77,10 +77,21 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Health check error:', error);
 
+    // Log environment check
+    console.error('OPENAI_API_KEY exists:', !!process.env.OPENAI_API_KEY);
+    console.error('OPENAI_API_KEY length:', process.env.OPENAI_API_KEY?.length || 0);
+
     // Provide more specific error messages
     if (error instanceof Error) {
+      // Log the full error for debugging
+      console.error('Full error details:', {
+        message: error.message,
+        name: error.name,
+        stack: error.stack
+      });
+
       // Check for OpenAI-specific errors
-      if (error.message.includes('API key')) {
+      if (error.message.includes('API key') || error.message.includes('Incorrect API key')) {
         return NextResponse.json(
           { error: 'AI service authentication failed. Please contact support.' },
           { status: 503 }
@@ -93,9 +104,6 @@ export async function POST(request: NextRequest) {
           { status: 503 }
         );
       }
-
-      // Log the actual error for debugging
-      console.error('Detailed error:', error.message, error.stack);
     }
 
     return NextResponse.json(
