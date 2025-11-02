@@ -217,16 +217,16 @@ export default function ImpactPage() {
         <CardHeader>
           <CardTitle>Methodology</CardTitle>
         </CardHeader>
-        <CardContent className="prose prose-sm max-w-none">
-          <p className="text-sm">
+        <CardContent className="space-y-4">
+          <p className="text-sm leading-relaxed">
             <strong>Formula:</strong> Annual CO₂ avoided = Capacity (MW) × 8,760 hours × Capacity Factor × Baseline Intensity (gCO₂/kWh) / 1,000
           </p>
-          <p className="text-sm mt-2">
+          <p className="text-sm leading-relaxed">
             <strong>Assumptions:</strong> Calculations assume displaced electricity from the baseline grid mix.
             Does not account for embodied carbon in manufacturing, curtailment, or degradation.
             Uncertainty band reflects typical variation in capacity factors and baseline intensity.
           </p>
-          <p className="text-sm mt-2 text-muted-foreground">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             <strong>Disclaimer:</strong> Results are estimates for informational purposes. Verify with detailed engineering studies.
           </p>
         </CardContent>

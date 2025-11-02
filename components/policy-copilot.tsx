@@ -190,8 +190,8 @@ export function PolicyCopilot() {
               )}
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="prose prose-sm max-w-none">
-                <p className="whitespace-pre-wrap">{result.answer}</p>
+              <div>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">{result.answer}</p>
               </div>
 
               {result.disclaimer && (

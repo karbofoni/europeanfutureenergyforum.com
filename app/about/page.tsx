@@ -42,20 +42,20 @@ export default function AboutPage() {
         <CardHeader>
           <CardTitle>Our Mission</CardTitle>
         </CardHeader>
-        <CardContent className="prose prose-sm max-w-none">
-          <p>
+        <CardContent className="space-y-4">
+          <p className="text-sm leading-relaxed">
             Founded in 2025, Transition Nexus Europe was created to address a critical gap in the European
             clean energy ecosystem: the lack of a transparent, data-driven platform that connects projects
             with capital and expertise while providing clear insights into policy, grid realities, and impact.
           </p>
-          <p>
+          <p className="text-sm leading-relaxed">
             We believe that accelerating the energy transition requires more than ambition—it demands accessible
             information, transparent methodologies, and intelligent tools that help stakeholders navigate complexity.
           </p>
-          <p>
+          <p className="text-sm leading-relaxed">
             Our platform serves developers, investors, suppliers, and policymakers by providing:
           </p>
-          <ul>
+          <ul className="space-y-2 text-sm pl-5 list-disc">
             <li>Verified project and investment opportunity data</li>
             <li>Plain-English policy and permitting guides</li>
             <li>Grid interconnection timelines and processes</li>
@@ -120,12 +120,12 @@ export default function AboutPage() {
             <Database className="h-8 w-8 text-emerald-600 mb-2" />
             <CardTitle>Open Data Commitment</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-sm mb-3">
+          <CardContent className="space-y-3">
+            <p className="text-sm leading-relaxed">
               We believe in open access to clean energy data. All project listings, policy briefs,
               and grid timelines are publicly accessible.
             </p>
-            <p className="text-sm">
+            <p className="text-sm leading-relaxed">
               Impact calculations include full methodology disclosure with exportable results.
               No paywalls for core information.
             </p>
@@ -137,17 +137,17 @@ export default function AboutPage() {
         <CardHeader>
           <CardTitle>Important Disclaimer</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm space-y-2">
-          <p>
+        <CardContent className="space-y-4">
+          <p className="text-sm leading-relaxed">
             <strong>Transition Nexus Europe is an independent initiative.</strong> We are not affiliated
             with any third-party brands, events, or commercial organizations.
           </p>
-          <p>
+          <p className="text-sm leading-relaxed">
             All information on this platform is provided for informational purposes only and does not
             constitute financial, legal, or investment advice. Users should conduct their own due diligence
             and consult appropriate professionals before making decisions.
           </p>
-          <p>
+          <p className="text-sm leading-relaxed">
             While we strive for accuracy, we cannot guarantee the completeness or timeliness of all data.
             Always verify critical information with official sources and project stakeholders.
           </p>
