@@ -1,23 +1,34 @@
 import { createClient } from '@supabase/supabase-js';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 
-const envPath = resolve(process.cwd(), '.env');
-const envContent = readFileSync(envPath, 'utf-8');
-const envVars: Record<string, string> = {};
+// Try to load from environment variables first (for GitHub Actions)
+// Then fall back to reading .env file (for local development)
+let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+let supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-envContent.split('\n').forEach(line => {
-  const [key, ...valueParts] = line.split('=');
-  if (key && valueParts.length) {
-    envVars[key.trim()] = valueParts.join('=').trim();
+// If not in environment, try to read from .env file
+if (!supabaseUrl || !supabaseAnonKey) {
+  const envPath = resolve(process.cwd(), '.env');
+
+  if (existsSync(envPath)) {
+    const envContent = readFileSync(envPath, 'utf-8');
+    const envVars: Record<string, string> = {};
+
+    envContent.split('\n').forEach(line => {
+      const [key, ...valueParts] = line.split('=');
+      if (key && valueParts.length) {
+        envVars[key.trim()] = valueParts.join('=').trim();
+      }
+    });
+
+    supabaseUrl = envVars.NEXT_PUBLIC_SUPABASE_URL;
+    supabaseAnonKey = envVars.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   }
-});
-
-const supabaseUrl = envVars.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = envVars.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+}
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+  throw new Error('Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.');
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
