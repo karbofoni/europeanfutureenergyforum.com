@@ -117,7 +117,7 @@ export default function HealthCheckPage() {
         <div className="bg-gradient-to-br from-emerald-50 via-white to-blue-50 border-b">
           <div className="container py-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl font-bold mb-2">Project Health Check Results</h1>
+              <h1 className="text-3xl font-bold mb-2">Project Assessment Report</h1>
               <p className="text-muted-foreground">
                 Report ID: {result.report_id} • Generated: {new Date(result.created_at).toLocaleString()}
               </p>
@@ -158,9 +158,9 @@ export default function HealthCheckPage() {
         <div className="bg-gradient-to-br from-emerald-50 via-white to-blue-50 border-b">
           <div className="container py-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl font-bold mb-2">AI Project Health Check</h1>
+              <h1 className="text-3xl font-bold mb-2">Project Due Diligence Assessment</h1>
               <p className="text-muted-foreground">
-                Complete the form below to receive your comprehensive project analysis
+                Provide project details to receive your comprehensive analysis report
               </p>
             </div>
           </div>
@@ -219,11 +219,11 @@ export default function HealthCheckPage() {
         <div className="container relative z-10 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6">
-              AI-Powered Project Health Check
+              Professional Project Due Diligence in Minutes
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Get instant due diligence analysis for your renewable energy project.
-              Understand risks, compare benchmarks, and prepare for investor conversations—all in minutes.
+              Accelerate investment decisions with AI-powered analysis. Evaluate project readiness,
+              identify risks, and benchmark performance against European renewable energy standards.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -231,7 +231,7 @@ export default function HealthCheckPage() {
                 onClick={() => setShowForm(true)}
                 className="bg-emerald-600 hover:bg-emerald-700 text-lg px-8"
               >
-                Start Free Analysis
+                Begin Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -241,7 +241,7 @@ export default function HealthCheckPage() {
                 className="text-lg px-8"
               >
                 <Eye className="mr-2 h-5 w-5" />
-                View Demo Report
+                View Sample Report
               </Button>
               <Button
                 size="lg"
@@ -261,15 +261,16 @@ export default function HealthCheckPage() {
       </div>
 
       <div className="container py-16">
-        {/* Problem Statement */}
+        {/* Value Proposition */}
         <div className="max-w-4xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl font-bold mb-4">The €50k-200k Problem</h2>
+          <h2 className="text-3xl font-bold mb-4">Streamline Your Investment Process</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Professional due diligence for renewable energy projects costs <strong>€50,000 to €200,000</strong> and
-            takes weeks. Many early-stage developers can&apos;t afford this—yet investors require it.
+            Make informed screening decisions faster. Our AI-powered analysis delivers preliminary due diligence
+            insights in minutes, helping investors and developers identify opportunities and risks early in the
+            evaluation process.
           </p>
           <p className="text-lg text-emerald-600 font-semibold mt-4">
-            Our AI gives you instant preliminary analysis for free.
+            Focus resources on the most promising projects with confidence.
           </p>
         </div>
 
@@ -282,7 +283,7 @@ export default function HealthCheckPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Get comprehensive analysis in under 3 minutes. No waiting weeks for consultant reports.
+                Comprehensive preliminary analysis delivered in minutes. Make initial screening decisions efficiently.
               </p>
             </CardContent>
           </Card>
@@ -290,11 +291,11 @@ export default function HealthCheckPage() {
           <Card>
             <CardHeader>
               <Shield className="h-10 w-10 text-emerald-600 mb-3" />
-              <CardTitle>Risk Identification</CardTitle>
+              <CardTitle>Risk Assessment</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Spot critical red flags before investors do. Address issues proactively to improve project quality.
+                Identify key risks and critical success factors early in the evaluation process.
               </p>
             </CardContent>
           </Card>
@@ -302,11 +303,11 @@ export default function HealthCheckPage() {
           <Card>
             <CardHeader>
               <TrendingUp className="h-10 w-10 text-emerald-600 mb-3" />
-              <CardTitle>Benchmark Data</CardTitle>
+              <CardTitle>Market Intelligence</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                See how your project compares to similar deals. Understand if your metrics are competitive.
+                Compare project metrics against European market standards and similar investments.
               </p>
             </CardContent>
           </Card>
@@ -314,11 +315,11 @@ export default function HealthCheckPage() {
           <Card>
             <CardHeader>
               <Award className="h-10 w-10 text-emerald-600 mb-3" />
-              <CardTitle>Investor Ready</CardTitle>
+              <CardTitle>Investment Readiness</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Know exactly what milestones you need to attract capital. Prioritize next steps strategically.
+                Assess project maturity and identify key milestones required for investment decisions.
               </p>
             </CardContent>
           </Card>
@@ -395,27 +396,27 @@ export default function HealthCheckPage() {
 
         {/* CTA */}
         <div className="max-w-3xl mx-auto text-center bg-emerald-50 rounded-2xl p-12 border border-emerald-200">
-          <h2 className="text-3xl font-bold mb-4">Ready to Analyze Your Project?</h2>
+          <h2 className="text-3xl font-bold mb-4">Evaluate Your Next Opportunity</h2>
           <p className="text-lg text-muted-foreground mb-6">
-            Join developers who are using AI to prepare better for investor conversations.
+            Trusted by investors and developers across Europe for preliminary project screening.
           </p>
           <Button
             size="lg"
             onClick={() => setShowForm(true)}
             className="bg-emerald-600 hover:bg-emerald-700 text-lg px-8"
           >
-            Start Free Health Check
+            Begin Assessment
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <p className="text-sm text-muted-foreground mt-4">
-            No signup required • Takes 3 minutes • 100% free
+            No registration required • 3-minute assessment • Complimentary service
           </p>
         </div>
 
         {/* Recent Reports */}
         {!loadingReports && recentReports.length > 0 && (
           <div className="max-w-4xl mx-auto mt-16">
-            <h2 className="text-3xl font-bold mb-6 text-center">Recent Health Check Reports</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">Recent Project Assessments</h2>
             <div className="grid gap-4">
               {recentReports.map((report) => (
                 <Card
