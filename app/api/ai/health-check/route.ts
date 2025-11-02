@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { openai } from '@/lib/openai';
 import { supabase } from '@/lib/supabase';
 import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
 import type {
@@ -11,20 +11,8 @@ import type {
   InvestorReadiness,
 } from '@/types/health-check';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || '',
-});
-
 export async function POST(request: NextRequest) {
   try {
-    // Check if OpenAI API key is configured
-    if (!process.env.OPENAI_API_KEY) {
-      console.error('OPENAI_API_KEY is not configured');
-      return NextResponse.json(
-        { error: 'AI service is not configured. Please contact support.' },
-        { status: 503 }
-      );
-    }
 
     // Rate limiting: 10 requests per minute per IP
     const clientId = getClientIdentifier(request);
@@ -296,7 +284,7 @@ Be specific to ${input.country}'s renewable energy landscape, permitting timelin
 Respond ONLY with valid JSON, no markdown formatting.`;
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-4o',
+    model: 'gpt-4o-mini',
     messages: [
       {
         role: 'system',
