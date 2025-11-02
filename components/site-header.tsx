@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Zap, Sparkles } from 'lucide-react';
+import { Menu, X, Zap, Sparkles, Activity } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -48,9 +48,15 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-4">
+          <Link href="/health-check" className="hidden lg:flex">
+            <Button variant="outline" size="sm" className="gap-1.5 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
+              <Activity className="h-4 w-4" />
+              Health Check
+            </Button>
+          </Link>
           <Link href="/analytics" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors">
             <Sparkles className="h-4 w-4" />
-            AI Analytics
+            AI Tools
           </Link>
           <Link href="/about" className="hidden md:block text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors">
             About
@@ -75,6 +81,12 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-t">
           <div className="container py-4 space-y-3">
+            <Link href="/health-check" onClick={() => setMobileMenuOpen(false)}>
+              <Button variant="outline" size="sm" className="w-full gap-1.5 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
+                <Activity className="h-4 w-4" />
+                AI Health Check
+              </Button>
+            </Link>
             {navigation.map((item) => (
               <Link
                 key={item.href}
@@ -88,6 +100,13 @@ export function SiteHeader() {
                 {item.name}
               </Link>
             ))}
+            <Link
+              href="/analytics"
+              className="block py-2 text-sm font-medium text-muted-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              AI Tools
+            </Link>
             <Link
               href="/about"
               className="block py-2 text-sm font-medium text-muted-foreground"
