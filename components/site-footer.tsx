@@ -11,8 +11,10 @@ const footerLinks = {
   Resources: [
     { name: 'Policy Briefs', href: '/policy' },
     { name: 'Grid Guide', href: '/grid' },
+    { name: 'Residential Heating', href: '/residential-heating' },
     { name: 'Impact Calculator', href: '/impact' },
     { name: 'Library', href: '/library' },
+    { name: 'Blog', href: '/blog' },
   ],
   Company: [
     { name: 'About', href: '/about' },
@@ -24,6 +26,10 @@ const footerLinks = {
     { name: 'Brand Use', href: '/legal/brand-use' },
   ],
 };
+
+const relatedTechnologies = [
+  { name: 'Residential Heating Systems', href: 'https://www.nationalheatershops.co.uk/c/heating/', external: true },
+];
 
 export function SiteFooter() {
   return (
@@ -47,6 +53,24 @@ export function SiteFooter() {
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Related Technologies Section */}
+        <div className="mb-8 pb-8 border-b">
+          <h3 className="font-semibold mb-4 text-sm">Related Technologies</h3>
+          <ul className="space-y-3">
+            {relatedTechnologies.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-emerald-600 transition-colors"
+                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="border-t pt-8">

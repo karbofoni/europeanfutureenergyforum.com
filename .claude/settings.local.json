@@ -40,7 +40,8 @@
       "Bash(echo:*)",
       "Bash(netlify env:get:*)",
       "Bash(netlify build:*)",
-      "Bash(npm run seed:migrations:*)"
+      "Bash(npm run seed:migrations:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
