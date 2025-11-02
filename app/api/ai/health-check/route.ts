@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { openai } from '@/lib/openai';
+import { chatCompletion } from '@/lib/openai';
 import { supabase } from '@/lib/supabase';
 import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
 import type {
@@ -291,20 +291,18 @@ Be specific to ${input.country}'s renewable energy landscape, permitting timelin
 
 Respond ONLY with valid JSON, no markdown formatting.`;
 
-  const completion = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [
-      {
-        role: 'system',
-        content: 'You are an expert renewable energy project analyst. Provide thorough, realistic due diligence assessments. Always respond with valid JSON only.',
-      },
-      {
-        role: 'user',
-        content: prompt,
-      },
-    ],
+  const completion = await chatCompletion([
+    {
+      role: 'system',
+      content: 'You are an expert renewable energy project analyst. Provide thorough, realistic due diligence assessments. Always respond with valid JSON only.',
+    },
+    {
+      role: 'user',
+      content: prompt,
+    },
+  ], {
     temperature: 0.7,
-    max_tokens: 3000,
+    maxTokens: 3000,
   });
 
   const responseText = completion.choices[0].message.content || '{}';
