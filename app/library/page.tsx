@@ -30,16 +30,17 @@ export default async function LibraryPage() {
   const items = await getLibraryItems();
 
   return (
-    <div className="container py-12">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Knowledge Library</h1>
-        <p className="text-lg text-muted-foreground max-w-3xl">
-          Plain-English briefs, in-depth reports, and case studies on European clean energy markets,
-          policy, and technology.
-        </p>
-      </div>
+    <div className="min-h-screen">
+      <div className="container py-12">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Knowledge Library</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl">
+            Plain-English briefs, in-depth reports, and case studies on European clean energy markets,
+            policy, and technology.
+          </p>
+        </div>
 
-      {items.length === 0 ? (
+        {items.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">No library items found. Check back soon.</p>
         </div>
@@ -78,6 +79,7 @@ export default async function LibraryPage() {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

@@ -55,15 +55,16 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="container py-12 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="text-lg text-muted-foreground">
-          Get in touch to add your project, publish an investor mandate, or learn more about the platform.
-        </p>
-      </div>
+    <div className="min-h-screen">
+      <div className="container py-12 max-w-4xl">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+          <p className="text-lg text-muted-foreground">
+            Get in touch to add your project, publish an investor mandate, or learn more about the platform.
+          </p>
+        </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -180,6 +181,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </div>
   );
