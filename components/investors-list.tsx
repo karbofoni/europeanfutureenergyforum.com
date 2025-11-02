@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { EmptyState } from './empty-state';
+import { GlossaryTerm } from './glossary-term';
 
 interface InvestorsListProps {
   investors: Investor[];
@@ -132,7 +133,9 @@ export function InvestorsList({ investors }: InvestorsListProps) {
                   <div className="flex items-center gap-2">
                     <DollarSign className="h-5 w-5 text-emerald-600" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Ticket Size</p>
+                      <p className="text-sm text-muted-foreground">
+                        <GlossaryTerm term="Ticket Size">Ticket Size</GlossaryTerm>
+                      </p>
                       <p className="font-medium">
                         €{(investor.ticket_min_eur / 1000000).toFixed(1)}M - €
                         {(investor.ticket_max_eur / 1000000).toFixed(1)}M
@@ -142,13 +145,17 @@ export function InvestorsList({ investors }: InvestorsListProps) {
 
                   {investor.irr_target && (
                     <div>
-                      <p className="text-sm text-muted-foreground">Target IRR</p>
+                      <p className="text-sm text-muted-foreground">
+                        <GlossaryTerm term="IRR">Target IRR</GlossaryTerm>
+                      </p>
                       <p className="font-medium">{investor.irr_target}%</p>
                     </div>
                   )}
 
                   <div>
-                    <p className="text-sm text-muted-foreground mb-2">Mandate Types</p>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      <GlossaryTerm term="Mandate Types">Mandate Types</GlossaryTerm>
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {investor.mandate_types.map((type) => (
                         <Badge key={type} variant="secondary">

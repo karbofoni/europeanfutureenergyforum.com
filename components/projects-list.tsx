@@ -8,6 +8,7 @@ import { MapPin, Zap, TrendingUp, Activity, Search } from 'lucide-react';
 import { ProjectFilters } from './project-filters';
 import { AIMatchmakerDrawer } from './ai-matchmaker-drawer';
 import { EmptyState } from './empty-state';
+import { GlossaryTerm } from './glossary-term';
 
 interface ProjectsListProps {
   projects: Project[];
@@ -125,7 +126,9 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                     )}
                     {project.capex_eur && (
                       <div className="text-sm">
-                        <p className="text-muted-foreground">CAPEX</p>
+                        <p className="text-muted-foreground">
+                          <GlossaryTerm term="CAPEX">CAPEX</GlossaryTerm>
+                        </p>
                         <p className="font-medium">
                           €{(project.capex_eur / 1000000).toFixed(1)}M
                         </p>

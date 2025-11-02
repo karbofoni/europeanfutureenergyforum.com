@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Loader2, Sparkles, Target, TrendingUp, MapPin, DollarSign, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { Project } from '@/types/database';
@@ -112,10 +113,49 @@ export function AIMatchmakerDrawer({ project, trigger }: AIMatchmakerDrawerProps
           </Card>
 
           {loading && (
-            <div className="flex flex-col items-center justify-center py-12 space-y-4">
-              <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
-              <p className="text-sm text-muted-foreground">Analyzing compatibility with investors...</p>
-              <p className="text-xs text-muted-foreground">Using AI semantic matching</p>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between mb-4">
+                <Skeleton className="h-5 w-28" />
+                <Skeleton className="h-6 w-32 rounded-full" />
+              </div>
+
+              {[1, 2, 3].map((i) => (
+                <Card key={i} className="transition-all">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-6 w-48" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                      </div>
+                      <div className="text-right ml-4">
+                        <Skeleton className="h-10 w-12 rounded-lg" />
+                        <Skeleton className="h-3 w-20 mt-1" />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <Skeleton className="h-4 w-32 mb-3" />
+                      <div className="space-y-3">
+                        {[1, 2, 3].map((j) => (
+                          <div key={j} className="space-y-1">
+                            <div className="flex items-center justify-between">
+                              <Skeleton className="h-4 w-28" />
+                              <Skeleton className="h-4 w-12" />
+                            </div>
+                            <Skeleton className="h-2 w-full rounded-full" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+                      <Skeleton className="h-12 w-full" />
+                      <Skeleton className="h-12 w-full" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           )}
 

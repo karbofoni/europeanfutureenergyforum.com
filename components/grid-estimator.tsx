@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { GlossaryTerm } from './glossary-term';
 import { Loader2, Zap, Clock, FileText, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -117,7 +119,9 @@ export function GridEstimator({ countries }: GridEstimatorProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="size_mw">Capacity (MW)</Label>
+                <Label htmlFor="size_mw">
+                  Capacity (<GlossaryTerm term="MW">MW</GlossaryTerm>)
+                </Label>
                 <Input
                   id="size_mw"
                   type="number"
@@ -154,7 +158,7 @@ export function GridEstimator({ countries }: GridEstimatorProps) {
                 className="rounded border-gray-300"
               />
               <Label htmlFor="has_ppa" className="font-normal cursor-pointer">
-                Project has Power Purchase Agreement (PPA)
+                Project has <GlossaryTerm term="PPA">Power Purchase Agreement (PPA)</GlossaryTerm>
               </Label>
             </div>
 
@@ -174,6 +178,41 @@ export function GridEstimator({ countries }: GridEstimatorProps) {
           </form>
         </CardContent>
       </Card>
+
+      {loading && (
+        <Card className="border-2 border-emerald-200">
+          <CardHeader>
+            <Skeleton className="h-6 w-48 mb-4" />
+            <Skeleton className="h-8 w-40" />
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div>
+              <Skeleton className="h-5 w-56 mb-3" />
+              <div className="space-y-3">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="p-4 bg-slate-50 rounded-lg border">
+                    <div className="flex items-start justify-between mb-2">
+                      <Skeleton className="h-5 w-48" />
+                      <Skeleton className="h-6 w-24 rounded-full" />
+                    </div>
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-3/4 mt-2" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <Skeleton className="h-5 w-44 mb-3" />
+              <div className="grid md:grid-cols-2 gap-2">
+                {[1, 2, 3, 4].map((i) => (
+                  <Skeleton key={i} className="h-10 w-full rounded" />
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {result && (
         <Card className="border-2 border-emerald-200">
