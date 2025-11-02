@@ -11,7 +11,7 @@ import { Shield, TrendingUp, Clock, Award, ArrowRight, CheckCircle2, Eye, Zap } 
 import type { ProjectHealthCheckInput, HealthCheckResult } from '@/types/health-check';
 import { DEMO_REPORT, EXAMPLE_PROJECT } from '@/lib/demo-data';
 
-export default function HealthCheckPage() {
+export default function ProjectAssessmentPage() {
   const [showForm, setShowForm] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState('');
@@ -83,7 +83,7 @@ export default function HealthCheckPage() {
       const analysisResult: HealthCheckResult = await response.json();
 
       // Redirect to the saved report page
-      window.location.href = `/health-check/report/${analysisResult.report_id}`;
+      window.location.href = `/project-assessment/report/${analysisResult.report_id}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze project');
       console.error('Analysis error:', err);
@@ -422,7 +422,7 @@ export default function HealthCheckPage() {
                 <Card
                   key={report.report_id}
                   className="cursor-pointer hover:border-emerald-500 transition-colors"
-                  onClick={() => window.location.href = `/health-check/report/${report.report_id}`}
+                  onClick={() => window.location.href = `/project-assessment/report/${report.report_id}`}
                 >
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start gap-4">

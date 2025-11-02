@@ -48,10 +48,10 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="/health-check" className="hidden lg:flex">
+          <Link href="/project-assessment" className="hidden lg:flex">
             <Button variant="outline" size="sm" className="gap-1.5 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
               <Activity className="h-4 w-4" />
-              Health Check
+              Project Assessment
             </Button>
           </Link>
           <Link href="/analytics" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors">
@@ -81,10 +81,10 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-t">
           <div className="container py-4 space-y-3">
-            <Link href="/health-check" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/project-assessment" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="outline" size="sm" className="w-full gap-1.5 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
                 <Activity className="h-4 w-4" />
-                AI Health Check
+                Project Assessment
               </Button>
             </Link>
             {navigation.map((item) => (

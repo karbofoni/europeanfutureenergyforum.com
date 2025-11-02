@@ -47,7 +47,7 @@ export default function ReportPage({ params }: { params: { id: string } }) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Project Health Check Report',
+          title: 'Project Assessment Report',
           text: 'Check out this renewable energy project analysis',
           url,
         });
@@ -83,9 +83,9 @@ export default function ReportPage({ params }: { params: { id: string } }) {
         <div className="text-center max-w-md">
           <h1 className="text-2xl font-bold mb-2">Report Not Found</h1>
           <p className="text-muted-foreground mb-6">{error || 'This report does not exist or has been removed.'}</p>
-          <Button onClick={() => router.push('/health-check')}>
+          <Button onClick={() => router.push('/project-assessment')}>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Health Check
+            Back to Project Assessment
           </Button>
         </div>
       </div>
@@ -99,16 +99,16 @@ export default function ReportPage({ params }: { params: { id: string } }) {
           <div className="max-w-4xl mx-auto">
             <Button
               variant="ghost"
-              onClick={() => router.push('/health-check')}
+              onClick={() => router.push('/project-assessment')}
               className="mb-4"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Health Check
+              Back to Project Assessment
             </Button>
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold mb-2">Project Health Check Results</h1>
+                <h1 className="text-3xl font-bold mb-2">Project Assessment Results</h1>
                 <p className="text-muted-foreground">
                   Report ID: {report.report_id} • Generated: {new Date(report.created_at).toLocaleString()}
                 </p>
