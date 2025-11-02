@@ -12,11 +12,20 @@ import type {
 } from '@/types/health-check';
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if OpenAI API key is configured
+    if (!process.env.OPENAI_API_KEY) {
+      console.error('OPENAI_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'AI service is not configured. Please contact support.' },
+        { status: 503 }
+      );
+    }
+
     // Rate limiting: 10 requests per minute per IP
     const clientId = getClientIdentifier(request);
     const rateLimitResult = checkRateLimit(clientId, 10);
@@ -79,8 +88,30 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Health check error:', error);
+
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      // Check for OpenAI-specific errors
+      if (error.message.includes('API key')) {
+        return NextResponse.json(
+          { error: 'AI service authentication failed. Please contact support.' },
+          { status: 503 }
+        );
+      }
+
+      if (error.message.includes('rate limit') || error.message.includes('quota')) {
+        return NextResponse.json(
+          { error: 'AI service is temporarily at capacity. Please try again in a few minutes.' },
+          { status: 503 }
+        );
+      }
+
+      // Log the actual error for debugging
+      console.error('Detailed error:', error.message, error.stack);
+    }
+
     return NextResponse.json(
-      { error: 'Failed to analyze project' },
+      { error: 'Failed to analyze project. Please try again or contact support if the issue persists.' },
       { status: 500 }
     );
   }
