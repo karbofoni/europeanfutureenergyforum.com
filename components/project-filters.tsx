@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 
 interface ProjectFiltersProps {
@@ -96,6 +97,63 @@ export function ProjectFilters({ filters, onFilterChange, onReset }: ProjectFilt
           </Select>
         </div>
       </div>
+
+      {/* Active Filter Chips */}
+      {hasActiveFilters && (
+        <div className="mt-4 pt-4 border-t">
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="text-sm text-muted-foreground">Active filters:</span>
+            {filters.country !== 'All' && (
+              <Badge variant="secondary" className="gap-1">
+                Country: {filters.country}
+                <button
+                  onClick={() => onFilterChange('country', 'All')}
+                  className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+                  aria-label="Remove country filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </Badge>
+            )}
+            {filters.technology !== 'All' && (
+              <Badge variant="secondary" className="gap-1">
+                Technology: {filters.technology}
+                <button
+                  onClick={() => onFilterChange('technology', 'All')}
+                  className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+                  aria-label="Remove technology filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </Badge>
+            )}
+            {filters.stage !== 'All' && (
+              <Badge variant="secondary" className="gap-1">
+                Stage: {filters.stage}
+                <button
+                  onClick={() => onFilterChange('stage', 'All')}
+                  className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+                  aria-label="Remove stage filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </Badge>
+            )}
+            {filters.search && (
+              <Badge variant="secondary" className="gap-1">
+                Search: "{filters.search}"
+                <button
+                  onClick={() => onFilterChange('search', '')}
+                  className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </Badge>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

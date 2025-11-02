@@ -4,9 +4,10 @@ import { useState, useMemo } from 'react';
 import { Project } from '@/types/database';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Zap, TrendingUp, Activity } from 'lucide-react';
+import { MapPin, Zap, TrendingUp, Activity, Search } from 'lucide-react';
 import { ProjectFilters } from './project-filters';
 import { AIMatchmakerDrawer } from './ai-matchmaker-drawer';
+import { EmptyState } from './empty-state';
 
 interface ProjectsListProps {
   projects: Project[];
@@ -73,9 +74,15 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       </div>
 
       {filteredProjects.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No projects match your filters. Try adjusting your search.</p>
-        </div>
+        <EmptyState
+          icon={Search}
+          title="No projects found"
+          description="No projects match your current filters. Try adjusting your search criteria or clearing some filters to see more results."
+          action={{
+            label: "Clear all filters",
+            onClick: handleReset
+          }}
+        />
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => {

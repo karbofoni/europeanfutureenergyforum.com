@@ -80,3 +80,100 @@
     text-wrap: balance;
   }
 }
+
+/* Print Styles */
+@media print {
+  /* Hide elements not needed in print */
+  header,
+  footer,
+  nav,
+  .no-print,
+  button,
+  [role="navigation"],
+  [role="banner"],
+  [role="contentinfo"],
+  .back-to-top {
+    display: none !important;
+  }
+
+  /* Optimize for print */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure links are visible */
+  a,
+  a:visited {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+
+  /* Show link URLs after links (for important links) */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Don't show URLs for internal links or anchors */
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+
+  /* Page breaks */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  img,
+  table,
+  figure {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure good contrast */
+  body {
+    margin: 2cm;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: 24pt;
+  }
+
+  h2 {
+    font-size: 18pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
+
+  /* Table styles for print */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  /* Remove interactive elements */
+  input,
+  select,
+  textarea {
+    border: 1px solid #000;
+  }
+}

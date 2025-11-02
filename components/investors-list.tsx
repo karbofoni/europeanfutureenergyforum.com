@@ -4,12 +4,13 @@ import { useState, useMemo } from 'react';
 import { Investor } from '@/types/database';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { DollarSign, Globe } from 'lucide-react';
+import { DollarSign, Globe, Search } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import { EmptyState } from './empty-state';
 
 interface InvestorsListProps {
   investors: Investor[];
@@ -109,9 +110,15 @@ export function InvestorsList({ investors }: InvestorsListProps) {
       </div>
 
       {filteredInvestors.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No investors match your filters. Try adjusting your search.</p>
-        </div>
+        <EmptyState
+          icon={Search}
+          title="No investors found"
+          description="No investors match your current filters. Try adjusting your search criteria or clearing filters to see more investment opportunities."
+          action={{
+            label: "Clear all filters",
+            onClick: handleReset
+          }}
+        />
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
           {filteredInvestors.map((investor) => (
