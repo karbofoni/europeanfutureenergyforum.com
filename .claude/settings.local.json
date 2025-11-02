@@ -33,7 +33,14 @@
       "mcp__puppeteer__puppeteer_fill",
       "Bash(git commit:*)",
       "Bash(git push)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(timeout /t 120 /nobreak)",
+      "Bash(netlify functions:list:*)",
+      "Bash(curl:*)",
+      "Bash(echo:*)",
+      "Bash(netlify env:get:*)",
+      "Bash(netlify build:*)",
+      "Bash(npm run seed:migrations:*)"
     ],
     "deny": [],
     "ask": []

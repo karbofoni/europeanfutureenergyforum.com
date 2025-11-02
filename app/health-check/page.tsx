@@ -61,7 +61,9 @@ export default function HealthCheckPage() {
       }
 
       const analysisResult: HealthCheckResult = await response.json();
-      setResult(analysisResult);
+
+      // Redirect to the saved report page
+      window.location.href = `/health-check/report/${analysisResult.report_id}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze project');
       console.error('Analysis error:', err);

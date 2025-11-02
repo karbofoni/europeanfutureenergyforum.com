@@ -12,9 +12,9 @@ interface ResultsDisplayProps {
 
 export function ResultsDisplay({ result }: ResultsDisplayProps) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 print:space-y-4">
       {/* Overall Score Section */}
-      <Card className="border-2">
+      <Card className="border-2 print:break-inside-avoid">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl">Project Health Score</CardTitle>
           <CardDescription>Overall assessment of your project&apos;s investment readiness</CardDescription>
@@ -38,7 +38,7 @@ export function ResultsDisplay({ result }: ResultsDisplayProps) {
       </Card>
 
       {/* Category Scores */}
-      <div>
+      <div className="print:break-inside-avoid">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           <BarChart3 className="h-6 w-6" />
           Category Analysis
@@ -52,7 +52,7 @@ export function ResultsDisplay({ result }: ResultsDisplayProps) {
 
       {/* Red Flags */}
       {result.red_flags.length > 0 && (
-        <div>
+        <div className="print:break-before-page">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <AlertTriangle className="h-6 w-6 text-amber-600" />
             Issues & Concerns
@@ -66,12 +66,12 @@ export function ResultsDisplay({ result }: ResultsDisplayProps) {
       )}
 
       {/* Benchmarks */}
-      <div>
+      <div className="print:break-inside-avoid">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           <TrendingUp className="h-6 w-6" />
           Benchmark Comparison
         </h2>
-        <Card>
+        <Card className="print:break-inside-avoid">
           <CardHeader>
             <CardDescription>
               Compared against {result.comparable_projects_count} similar projects.
@@ -87,12 +87,12 @@ export function ResultsDisplay({ result }: ResultsDisplayProps) {
       </div>
 
       {/* Investor Readiness */}
-      <div>
+      <div className="print:break-inside-avoid">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           <Award className="h-6 w-6" />
           Investor Readiness
         </h2>
-        <Card>
+        <Card className="print:break-inside-avoid">
           <CardContent className="pt-6">
             <div className="mb-6">
               <HealthGauge
@@ -150,7 +150,7 @@ export function ResultsDisplay({ result }: ResultsDisplayProps) {
 
       {/* Recommendations */}
       {result.recommendations.length > 0 && (
-        <Card className="bg-emerald-50 border-emerald-200">
+        <Card className="bg-emerald-50 border-emerald-200 print:break-inside-avoid">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-emerald-600" />
@@ -193,7 +193,7 @@ function CategoryScoreCard({ name, category }: { name: string; category: Categor
   };
 
   return (
-    <Card>
+    <Card className="print:break-inside-avoid">
       <CardHeader className="pb-3">
         <CardTitle className="text-lg flex items-center gap-2">
           <span className="text-2xl">{categoryIcons[name]}</span>
@@ -278,7 +278,7 @@ function RedFlagCard({ flag }: { flag: RedFlag }) {
   const config = getSeverityConfig(flag.severity);
 
   return (
-    <Card className={`${config.bgColor} ${config.borderColor} border-2`}>
+    <Card className={`${config.bgColor} ${config.borderColor} border-2 print:break-inside-avoid`}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">

@@ -70,6 +70,36 @@ export async function POST(request: NextRequest) {
       project_data: input,
     };
 
+    // Save report to database for future access
+    try {
+      const { error: dbError } = await supabase
+        .from('health_check_reports')
+        .insert({
+          report_id: result.report_id,
+          overall_score: result.overall_score,
+          score_category: result.score_category,
+          quick_summary: result.quick_summary,
+          category_scores: result.category_scores,
+          red_flags: result.red_flags,
+          recommendations: result.recommendations,
+          benchmarks: result.benchmarks,
+          comparable_projects_count: result.comparable_projects_count,
+          percentile_rank: result.percentile_rank,
+          investor_readiness: result.investor_readiness,
+          project_data: result.project_data,
+        });
+
+      if (dbError) {
+        console.error('Failed to save report to database:', dbError);
+        // Don't fail the request, just log the error
+      } else {
+        console.log(`Report saved: ${result.report_id}`);
+      }
+    } catch (saveError) {
+      console.error('Error saving report:', saveError);
+      // Continue with response even if save fails
+    }
+
     return NextResponse.json(result, {
       headers: rateLimitResult.headers,
     });
