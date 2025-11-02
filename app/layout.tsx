@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { KeyboardShortcuts } from '@/components/keyboard-shortcuts';
 import { Toaster } from '@/components/ui/sonner';
 import { BackToTop } from '@/components/back-to-top';
 
@@ -80,11 +82,13 @@ export default function RootLayout({
         </a>
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
+          <Breadcrumb />
           <main id="main-content" className="flex-1">{children}</main>
           <SiteFooter />
         </div>
         <Toaster />
         <BackToTop />
+        <KeyboardShortcuts />
       </body>
     </html>
   );
