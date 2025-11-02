@@ -50,9 +50,14 @@ async function runMigrations() {
     console.log(`Running migration: ${file}`);
     const sql = readFileSync(join(migrationsDir, file), 'utf-8');
 
-    const { error } = await supabase.rpc('exec_sql', { sql_query: sql }).catch(() => ({
-      error: null // RPC might not exist, use direct query instead
-    }));
+    let error = null;
+    try {
+      const result = await supabase.rpc('exec_sql', { sql_query: sql });
+      error = result.error;
+    } catch (e) {
+      // RPC might not exist, use direct query instead
+      error = null;
+    }
 
     if (error) {
       // Try direct execution using from() - won't work for DDL but let's try
