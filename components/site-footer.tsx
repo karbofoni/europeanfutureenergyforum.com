@@ -28,7 +28,13 @@ const footerLinks = {
 };
 
 const relatedTechnologies = [
+  { name: 'European Heat Pump Association', href: 'https://www.ehpa.org/', external: true },
+  { name: 'Solar Power Europe', href: 'https://www.solarpowereurope.org/', external: true },
+  { name: 'WindEurope', href: 'https://windeurope.org/', external: true },
   { name: 'Residential Heating Systems', href: 'https://www.nationalheatershops.co.uk/c/heating/', external: true },
+  { name: 'Energy Storage Europe', href: 'https://www.energystorageeurope.org/', external: true },
+  { name: 'Smart Energy Europe', href: 'https://www.smarten.eu/', external: true },
+  { name: 'IEA Energy Efficiency Hub', href: 'https://www.iea.org/topics/energy-efficiency', external: true },
 ];
 
 export function SiteFooter() {
@@ -57,8 +63,8 @@ export function SiteFooter() {
 
         {/* Related Technologies Section */}
         <div className="mb-8 pb-8 border-b">
-          <h3 className="font-semibold mb-4 text-sm">Related Technologies</h3>
-          <ul className="space-y-3">
+          <h3 className="font-semibold mb-4 text-sm">Related Technologies & Resources</h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
             {relatedTechnologies.map((link) => (
               <li key={link.href}>
                 <a
