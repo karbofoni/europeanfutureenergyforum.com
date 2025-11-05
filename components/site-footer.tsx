@@ -31,7 +31,7 @@ const relatedTechnologies = [
   { name: 'European Heat Pump Association', href: 'https://www.ehpa.org/', external: true },
   { name: 'Solar Power Europe', href: 'https://www.solarpowereurope.org/', external: true },
   { name: 'WindEurope', href: 'https://windeurope.org/', external: true },
-  { name: 'Residential Heating Systems', href: 'https://www.nationalheatershops.co.uk/c/heating/', external: true },
+  { name: 'Industrial Heating Systems', href: 'https://www.nationalheatershops.co.uk/c/heating/', external: true },
   { name: 'Energy Storage Europe', href: 'https://www.energystorageeurope.org/', external: true },
   { name: 'Smart Energy Europe', href: 'https://www.smarten.eu/', external: true },
   { name: 'IEA Energy Efficiency Hub', href: 'https://www.iea.org/topics/energy-efficiency', external: true },
