@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Zap, Sparkles, Activity } from 'lucide-react';
+import { Menu, X, Zap, Activity } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -54,10 +54,6 @@ export function SiteHeader() {
               Project Assessment
             </Button>
           </Link>
-          <Link href="/analytics" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors">
-            <Sparkles className="h-4 w-4" />
-            AI Tools
-          </Link>
           <Link href="/about" className="hidden md:block text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors">
             About
           </Link>
@@ -100,13 +96,6 @@ export function SiteHeader() {
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/analytics"
-              className="block py-2 text-sm font-medium text-muted-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              AI Tools
-            </Link>
             <Link
               href="/about"
               className="block py-2 text-sm font-medium text-muted-foreground"

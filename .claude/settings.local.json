@@ -41,7 +41,15 @@
       "Bash(netlify env:get:*)",
       "Bash(netlify build:*)",
       "Bash(npm run seed:migrations:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(timeout /t 20 /nobreak)",
+      "Bash(nul)",
+      "Bash(git mv:*)",
+      "Bash(xcopy:*)",
+      "Bash(.gitignore)",
+      "mcp__memory__create_entities",
+      "mcp__memory__read_graph",
+      "mcp__memory__search_nodes"
     ],
     "deny": [],
     "ask": []
