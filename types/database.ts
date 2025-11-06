@@ -28,6 +28,12 @@ export interface Investor {
   mandate_types: ('Equity' | 'Project Finance' | 'Mezz' | 'Grants')[];
   irr_target?: number;
   tags: string[];
+  email?: string;
+  phone?: string;
+  website?: string;
+  contact_person?: string;
+  linkedin_url?: string;
+  headquarters?: string;
   contacts: ContactInfo;
   created_at: string;
   updated_at: string;
@@ -43,6 +49,12 @@ export interface Supplier {
   capacity_mw_py?: number;
   credentials: Credential[];
   tags: string[];
+  email?: string;
+  phone?: string;
+  website?: string;
+  contact_person?: string;
+  linkedin_url?: string;
+  headquarters?: string;
   contacts: ContactInfo;
   created_at: string;
   updated_at: string;
