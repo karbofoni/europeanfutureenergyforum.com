@@ -52,7 +52,11 @@
       "mcp__memory__search_nodes",
       "WebSearch",
       "WebFetch(domain:www.cip.com)",
-      "Bash(npm run seed:*)"
+      "Bash(npm run seed:*)",
+      "mcp__memory__add_observations",
+      "Bash(tsx scripts/check-investors.js:*)",
+      "Bash(npx tsx:*)",
+      "WebFetch(domain:www.glennmont.com)"
     ],
     "deny": [],
     "ask": []
