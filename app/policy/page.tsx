@@ -10,7 +10,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Policy Briefs | Transition Nexus Europe',
-  description: 'Plain-English policy guides for renewable energy across Europe',
+  description: 'Plain-English policy guides for renewable energy across Europe. Understand incentives, permitting processes, and regulatory requirements by country.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const revalidate = 60;

@@ -7,7 +7,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Projects | Transition Nexus Europe',
-  description: 'Browse renewable energy projects across Europe seeking investment and partnerships',
+  description: 'Browse renewable energy projects across Europe seeking investment and partnerships. Discover solar, wind, and battery storage opportunities with transparent data.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const dynamic = 'force-dynamic';

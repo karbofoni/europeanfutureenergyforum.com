@@ -9,7 +9,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Events | Transition Nexus Europe',
-  description: 'Upcoming clean energy events and networking opportunities',
+  description: 'Upcoming clean energy events and networking opportunities across Europe. Discover conferences, summits, and industry gatherings for renewable energy professionals.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const revalidate = 60;

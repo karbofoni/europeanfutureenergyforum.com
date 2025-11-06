@@ -5,7 +5,10 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Residential Heating Transition - Transition Nexus Europe',
-  description: 'Understand the shift from traditional heating systems to renewable heat pumps and electrified heating solutions across Europe.',
+  description: 'Understand the shift from traditional heating systems to renewable heat pumps and electrified heating solutions across Europe. Investment opportunities in decarbonization.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export default function ResidentialHeatingPage() {

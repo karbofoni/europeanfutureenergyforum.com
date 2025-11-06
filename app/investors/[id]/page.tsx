@@ -37,6 +37,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title: `${investor.name} | Investors | Transition Nexus Europe`,
     description: investor.summary,
+    alternates: {
+      canonical: `.`
+    }
   };
 }
 

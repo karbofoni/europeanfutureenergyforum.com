@@ -6,7 +6,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About | Transition Nexus Europe',
-  description: 'Learn about our mission to accelerate the European clean energy transition',
+  description: 'Learn about our mission to accelerate the European clean energy transition through transparent data, verified project listings, and AI-powered tools.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export default function AboutPage() {

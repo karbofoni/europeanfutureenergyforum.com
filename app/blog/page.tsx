@@ -6,7 +6,10 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Blog - Transition Nexus Europe',
-  description: 'Insights on European renewable energy projects, policy developments, and energy transition analysis.',
+  description: 'Insights on European renewable energy projects, policy developments, and energy transition analysis. Expert perspectives on clean energy markets and investment trends.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export default function BlogPage() {

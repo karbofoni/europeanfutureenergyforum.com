@@ -10,7 +10,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Grid Connection Guide | Transition Nexus Europe',
-  description: 'Grid interconnection timelines and processes across Europe',
+  description: 'Grid interconnection timelines and processes across Europe. Understand connection requirements, lead times, and documentation for renewable energy projects.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const revalidate = 60;

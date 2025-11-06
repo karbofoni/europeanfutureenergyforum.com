@@ -56,3 +56,58 @@ export function ItemListSchema({ items, listType }: { items: any[]; listType: st
 
   return <JsonLd data={schema} />;
 }
+
+export function ArticleSchema({
+  title,
+  description,
+  datePublished,
+  dateModified,
+  url,
+  imageUrl,
+  authorName = 'Transition Nexus Europe',
+}: {
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  url: string;
+  imageUrl?: string;
+  authorName?: string;
+}) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://transition-nexus-europe.com';
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title.substring(0, 110), // Max 110 chars for headline
+    description: description,
+    author: {
+      '@type': 'Person',
+      name: authorName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Transition Nexus Europe',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+      },
+    },
+    datePublished: datePublished,
+    dateModified: dateModified || datePublished,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    ...(imageUrl && {
+      image: {
+        '@type': 'ImageObject',
+        url: imageUrl,
+        width: 1200,
+        height: 630,
+      },
+    }),
+  };
+
+  return <JsonLd data={schema} />;
+}

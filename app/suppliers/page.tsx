@@ -10,7 +10,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Suppliers | Transition Nexus Europe',
-  description: 'Find EPCs, OEMs, and consultants for renewable energy projects',
+  description: 'Find EPCs, OEMs, and consultants for renewable energy projects. Connect with vetted equipment manufacturers and engineering firms across Europe.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const revalidate = 60;

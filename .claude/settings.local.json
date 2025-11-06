@@ -56,7 +56,8 @@
       "mcp__memory__add_observations",
       "Bash(tsx scripts/check-investors.js:*)",
       "Bash(npx tsx:*)",
-      "WebFetch(domain:www.glennmont.com)"
+      "WebFetch(domain:www.glennmont.com)",
+      "WebFetch(domain:europeanfutureenergyforum.com)"
     ],
     "deny": [],
     "ask": []

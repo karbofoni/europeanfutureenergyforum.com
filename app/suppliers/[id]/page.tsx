@@ -37,6 +37,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title: `${supplier.name} | Suppliers | Transition Nexus Europe`,
     description: supplier.summary,
+    alternates: {
+      canonical: `.`
+    }
   };
 }
 

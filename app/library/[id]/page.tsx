@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { BookOpen, Clock, Calendar, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ArticleSchema } from '@/components/json-ld';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 60;
@@ -36,6 +37,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title: `${item.title} | Library | Transition Nexus Europe`,
     description: item.summary,
+    alternates: {
+      canonical: `.`
+    }
   };
 }
 
@@ -58,9 +62,20 @@ export default async function LibraryItemDetailPage({ params }: { params: { id: 
     day: 'numeric',
   });
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://transition-nexus-europe.com';
+
   return (
-    <div className="min-h-screen">
-      <div className="bg-gradient-to-br from-emerald-50 via-white to-slate-50 border-b">
+    <>
+      <ArticleSchema
+        title={item.title}
+        description={item.summary}
+        datePublished={item.published_at}
+        dateModified={item.updated_at || item.published_at}
+        url={`${baseUrl}/library/${item.id}`}
+        imageUrl={`${baseUrl}/og-image.png`}
+      />
+      <div className="min-h-screen">
+        <div className="bg-gradient-to-br from-emerald-50 via-white to-slate-50 border-b">
         <div className="container py-8">
           <Link href="/library" className="inline-flex items-center text-sm text-muted-foreground hover:text-emerald-600 mb-4">
             <ArrowLeft className="h-4 w-4 mr-1" />
@@ -132,5 +147,6 @@ export default async function LibraryItemDetailPage({ params }: { params: { id: 
         </div>
       </div>
     </div>
+    </>
   );
 }

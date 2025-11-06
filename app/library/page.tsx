@@ -8,7 +8,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Library | Transition Nexus Europe',
-  description: 'Curated briefs, reports, and case studies on European clean energy',
+  description: 'Curated briefs, reports, and case studies on European clean energy markets, policy developments, and technology trends. Plain-English analysis for professionals.',
+  alternates: {
+    canonical: './'
+  }
 };
 
 export const revalidate = 60;
