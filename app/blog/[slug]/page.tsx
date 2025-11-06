@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { ArticleSchema } from '@/components/json-ld';
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug);
@@ -15,8 +16,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://transition-nexus-europe.com';
+
   return (
-    <div className="min-h-screen">
+    <>
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt}
+        datePublished={post.date}
+        dateModified={post.date}
+        url={`${baseUrl}/blog/${post.slug}`}
+        imageUrl={`${baseUrl}/og-image.png`}
+        authorName={post.author}
+      />
+      <div className="min-h-screen">
       {/* Header */}
       <div className="bg-gradient-to-br from-emerald-50 via-white to-blue-50 border-b">
         <div className="container py-8">
@@ -87,5 +100,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </article>
       </div>
     </div>
+    </>
   );
 }
