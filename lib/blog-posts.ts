@@ -13,7 +13,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'offshore-wind-investment-landscape-2025',
     title: 'Offshore Wind Investment Landscape 2025: Opportunities and Challenges in European Waters',
-    excerpt: 'Europe's offshore wind sector is entering a critical phase with ambitious capacity targets and evolving financing models. An analysis of current investment trends and emerging opportunities.',
+    excerpt: 'Europe\'s offshore wind sector is entering a critical phase with ambitious capacity targets and evolving financing models. An analysis of current investment trends and emerging opportunities.',
     date: '2025-01-28',
     author: 'Transition Nexus Europe',
     category: 'Market Analysis',

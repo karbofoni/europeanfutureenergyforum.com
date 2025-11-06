@@ -70,7 +70,7 @@ export default async function LibraryItemDetailPage({ params }: { params: { id: 
         title={item.title}
         description={item.summary}
         datePublished={item.published_at}
-        dateModified={item.updated_at || item.published_at}
+        dateModified={item.published_at}
         url={`${baseUrl}/library/${item.id}`}
         imageUrl={`${baseUrl}/og-image.png`}
       />

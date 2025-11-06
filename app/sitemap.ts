@@ -114,12 +114,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic library items
   const { data: libraryItems } = await supabase
     .from('library_items')
-    .select('id, updated_at')
+    .select('id, published_at')
     .order('published_at', { ascending: false });
 
   const libraryPages: MetadataRoute.Sitemap = (libraryItems || []).map((item) => ({
     url: `${baseUrl}/library/${item.id}`,
-    lastModified: item.updated_at ? new Date(item.updated_at) : new Date(),
+    lastModified: item.published_at ? new Date(item.published_at) : new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
