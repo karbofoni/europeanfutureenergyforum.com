@@ -3,6 +3,7 @@ import { LibraryItem } from '@/types/database';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Clock } from 'lucide-react';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -47,35 +48,37 @@ export default async function LibraryPage() {
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
           {items.map((item) => (
-            <Card key={item.id} className="transition-all hover:shadow-lg">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-2">
-                  <BookOpen className="h-8 w-8 text-emerald-600" />
-                  <Badge className={typeColors[item.item_type]}>{item.item_type}</Badge>
-                </div>
-                <CardTitle className="text-xl">{item.title}</CardTitle>
-                <CardDescription>{item.summary}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <p className="text-sm line-clamp-4">{item.content}</p>
+            <Link key={item.id} href={`/library/${item.id}`}>
+              <Card className="transition-all hover:shadow-lg cursor-pointer h-full">
+                <CardHeader>
+                  <div className="flex items-start justify-between mb-2">
+                    <BookOpen className="h-8 w-8 text-emerald-600" />
+                    <Badge className={typeColors[item.item_type]}>{item.item_type}</Badge>
+                  </div>
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                  <CardDescription>{item.summary}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <p className="text-sm line-clamp-4">{item.content}</p>
 
-                  <div className="flex items-center justify-between pt-4 border-t">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
-                      <span>{item.read_time_minutes} min read</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {item.tags.slice(0, 2).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+                    <div className="flex items-center justify-between pt-4 border-t">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock className="h-4 w-4" />
+                        <span>{item.read_time_minutes} min read</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {item.tags.slice(0, 2).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       )}
