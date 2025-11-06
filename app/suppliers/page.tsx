@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { getShimmerDataURL } from '@/lib/image-blur';
 import { supabase } from '@/lib/supabase';
 import { Supplier } from '@/types/database';
@@ -59,15 +60,16 @@ export default async function SuppliersPage() {
       <div className="container py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {suppliers.map((supplier) => (
-          <Card key={supplier.id} className="transition-all hover:shadow-lg">
-            <CardHeader>
-              <div className="flex items-start justify-between mb-2">
-                <Building2 className="h-8 w-8 text-emerald-600" />
-                <Badge className={roleColors[supplier.role]}>{supplier.role}</Badge>
-              </div>
-              <CardTitle className="text-xl">{supplier.name}</CardTitle>
-              <CardDescription>{supplier.summary}</CardDescription>
-            </CardHeader>
+          <Link key={supplier.id} href={`/suppliers/${supplier.id}`}>
+            <Card className="transition-all hover:shadow-lg cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-2">
+                  <Building2 className="h-8 w-8 text-emerald-600" />
+                  <Badge className={roleColors[supplier.role]}>{supplier.role}</Badge>
+                </div>
+                <CardTitle className="text-xl">{supplier.name}</CardTitle>
+                <CardDescription>{supplier.summary}</CardDescription>
+              </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {supplier.capacity_mw_py && (
@@ -93,6 +95,7 @@ export default async function SuppliersPage() {
               </div>
             </CardContent>
           </Card>
+          </Link>
         ))}
         </div>
       </div>

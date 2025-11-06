@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { Investor } from '@/types/database';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -123,11 +124,12 @@ export function InvestorsList({ investors }: InvestorsListProps) {
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
           {filteredInvestors.map((investor) => (
-            <Card key={investor.id} className="transition-all hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl">{investor.name}</CardTitle>
-                <CardDescription>{investor.summary}</CardDescription>
-              </CardHeader>
+            <Link key={investor.id} href={`/investors/${investor.id}`}>
+              <Card className="transition-all hover:shadow-lg cursor-pointer h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl">{investor.name}</CardTitle>
+                  <CardDescription>{investor.summary}</CardDescription>
+                </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
@@ -183,6 +185,7 @@ export function InvestorsList({ investors }: InvestorsListProps) {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       )}

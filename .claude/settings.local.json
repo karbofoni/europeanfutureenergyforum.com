@@ -49,7 +49,10 @@
       "Bash(.gitignore)",
       "mcp__memory__create_entities",
       "mcp__memory__read_graph",
-      "mcp__memory__search_nodes"
+      "mcp__memory__search_nodes",
+      "WebSearch",
+      "WebFetch(domain:www.cip.com)",
+      "Bash(npm run seed:*)"
     ],
     "deny": [],
     "ask": []
